@@ -1,0 +1,91 @@
+{
+  "tickers": ["PANW", "ADI", "CEG", "LDOS", "MDT", "DASH", "CDNS", "NBIS", "PLTR", "COIN", "WMT", "BKNG", "TOL", "ETSY", "NEM"],
+  "check_interval_minutes": 5,
+  "market_hours_only": true,
+  "market_open": "09:30",
+  "market_close": "16:00",
+  "timezone": "US/Eastern",
+  "email": {
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "sender_email": "lewis@lewisbutler.com",
+    "app_password": "REPLACE_WITH_APP_PASSWORD"
+  },
+  "sell_rules": {
+    "PANW": {
+      "company": "Palo Alto Networks", "category": "core", "entry": 166, "stop_loss": 148, "target": 224,
+      "trailing_stop_pct": 8, "partial_target": 210, "partial_pct": 33,
+      "strategy": "Hold through earnings. Take 1/3 at $210, trail rest with 8% stop. Exit on miss at market open."
+    },
+    "ADI": {
+      "company": "Analog Devices", "category": "core", "entry": 337, "stop_loss": 305, "target": 375,
+      "trailing_stop_pct": 7, "partial_target": null, "partial_pct": null,
+      "strategy": "Hold for full move to $375. Tighten to 7% trailing after earnings gap up. Give 2 days on gap down."
+    },
+    "CEG": {
+      "company": "Constellation Energy", "category": "core", "entry": 288, "stop_loss": 255, "target": 407,
+      "trailing_stop_pct": 10, "partial_target": 350, "partial_pct": 25,
+      "strategy": "Multi-quarter hold. Take 25% off at $350, let rest run to $400+. Wide 10% trailing stop."
+    },
+    "LDOS": {
+      "company": "Leidos Holdings", "category": "core", "entry": 195, "stop_loss": 178, "target": 220,
+      "trailing_stop_pct": 7, "partial_target": null, "partial_pct": null,
+      "strategy": "Quick flip. Sell 100% at $215-220. Cut on miss. No holding past target."
+    },
+    "MDT": {
+      "company": "Medtronic", "category": "core", "entry": 101, "stop_loss": 93, "target": 110,
+      "trailing_stop_pct": 6, "partial_target": null, "partial_pct": null,
+      "strategy": "Sell 100% at $108-110. Low upside, reliable target. Redeploy capital after."
+    },
+    "DASH": {
+      "company": "DoorDash", "category": "core", "entry": 160, "stop_loss": 140, "target": 276,
+      "trailing_stop_pct": 10, "partial_target": 220, "partial_pct": 33,
+      "strategy": "Staged exit: 1/3 at $220, 1/3 at $255, final 1/3 at $276. Patience = profit."
+    },
+    "CDNS": {
+      "company": "Cadence Design", "category": "core", "entry": 299, "stop_loss": 270, "target": 383,
+      "trailing_stop_pct": 8, "partial_target": 370, "partial_pct": 50,
+      "strategy": "Hold and compound. Add on dips below $280. Only trim above $370."
+    },
+    "NBIS": {
+      "company": "Nebius Group", "category": "wildcard", "entry": 97, "stop_loss": 72, "target": 160,
+      "trailing_stop_pct": 15, "partial_target": 140, "partial_pct": 50,
+      "strategy": "GAMBLE. Take 50% at $140, let house money ride. Exit immediately on any miss."
+    },
+    "PLTR": {
+      "company": "Palantir", "category": "wildcard", "entry": 132, "stop_loss": 112, "target": 150,
+      "trailing_stop_pct": 8, "partial_target": 145, "partial_pct": 50,
+      "strategy": "Momentum trade. Sell 50% at $145, tight 8% trail on rest. Fast in, fast out at 110x PE."
+    },
+    "COIN": {
+      "company": "Coinbase", "category": "wildcard", "entry": 166, "stop_loss": 135, "target": 359,
+      "trailing_stop_pct": 12, "partial_target": 220, "partial_pct": 33,
+      "strategy": "Staged: 1/3 at $220, 1/3 at $280, final at $350. Watch BTC: above $80K=hold, below $65K=trim."
+    },
+    "WMT": {
+      "company": "Walmart", "category": "alternate", "entry": 134, "stop_loss": 122, "target": 150,
+      "trailing_stop_pct": 6, "partial_target": null, "partial_pct": null,
+      "strategy": "Sell 100% at $148-150. Last thing to sell if macro gets ugly."
+    },
+    "BKNG": {
+      "company": "Booking Holdings", "category": "alternate", "entry": 4137, "stop_loss": 3700, "target": 6196,
+      "trailing_stop_pct": 8, "partial_target": 5500, "partial_pct": 33,
+      "strategy": "Compounder. Don't trim until $5,500+. Take 1/3, let rest ride."
+    },
+    "TOL": {
+      "company": "Toll Brothers", "category": "alternate", "entry": 167, "stop_loss": 148, "target": 183,
+      "trailing_stop_pct": 8, "partial_target": null, "partial_pct": null,
+      "strategy": "Sell 100% at $180-183. Fast in, fast out. Don't fall in love with a homebuilder."
+    },
+    "ETSY": {
+      "company": "Etsy", "category": "alternate", "entry": 50, "stop_loss": 42, "target": 63,
+      "trailing_stop_pct": 10, "partial_target": null, "partial_pct": null,
+      "strategy": "Binary. GMS up=ride to $63. GMS down=next-day exit. No in-between."
+    },
+    "NEM": {
+      "company": "Newmont Corp", "category": "alternate", "entry": 126, "stop_loss": 112, "target": 140,
+      "trailing_stop_pct": 8, "partial_target": null, "partial_pct": null,
+      "strategy": "Gold proxy. Hold while gold >$5K. Sell 100% at $138-142. If gold >$5,200, raise target to $155."
+    }
+  }
+}

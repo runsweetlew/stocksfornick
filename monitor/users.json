@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "first_name": "Lewis",
+      "last_name": "Butler",
+      "email": "lewis@lewisbutler.com",
+      "username": "lewisbutler",
+      "trades": []
+    }
+  ]
+}
