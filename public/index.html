@@ -483,7 +483,8 @@
         .sb-stat .value { font-size: 1.5rem; font-weight: 800; margin-top: 0.15rem; }
         .sb-stat .sub { font-size: 0.65rem; color: var(--text-dim); margin-top: 0.1rem; }
         .sb-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
-        @media (max-width: 768px) { .sb-dual { grid-template-columns: 1fr; } .sb-stats { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .sb-dual { grid-template-columns: 1fr; } .sb-stats { grid-template-columns: repeat(3, 1fr) !important; } }
+        @media (max-width: 480px) { .sb-stats { grid-template-columns: repeat(2, 1fr) !important; } }
         .sb-panel {
             background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem;
         }
@@ -552,8 +553,11 @@
         .trade-sell { background: var(--red-dim); color: var(--red); }
         .trade-ticker { font-weight: 700; width: 45px; }
         .trade-details { flex: 1; color: var(--text-dim); }
-        .trade-delete { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.8rem; }
-        .trade-delete:hover { color: var(--red); }
+        .trade-actions { display: flex; gap: 0.3rem; flex-shrink: 0; }
+        .trade-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.75rem; padding: 0.15rem 0.3rem; border-radius: 4px; }
+        .trade-btn:hover { background: var(--surface-3); }
+        .trade-btn.edit:hover { color: var(--blue); }
+        .trade-btn.delete:hover { color: var(--red); }
 
         /* Toast notifications */
         .toast-container { position: fixed; top: 70px; right: 1rem; z-index: 2000; display: flex; flex-direction: column; gap: 0.5rem; }
@@ -1749,7 +1753,7 @@
             <div class="section-header">
                 <div class="section-tag">Exit Strategy</div>
                 <div class="section-title">Sell Signals &amp; Price Targets</div>
-                <div class="section-desc">When to take profits, where to set stops, and what triggers would change our thesis. Updated daily.</div>
+                <div class="section-desc">Profit-maximizing exit strategy for every pick. Where to take gains, when to let winners ride, and what triggers a sell. Updated daily.</div>
             </div>
 
             <div class="sell-category-label" style="color:var(--blue)">CORE PICKS</div>
@@ -1767,8 +1771,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">8%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--blue)"></div></div>
-                    <div class="sell-analysis-text">Await Feb 17 AMC earnings. NGS ARR growth is the key metric &mdash; needs 25%+ YoY to sustain thesis. Platformization strategy working with 82.5% subscription mix. Stock pulled back 25% from October highs creating attractive risk/reward.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Miss on NGS ARR growth (&lt;25%), guidance below $11.5B FY rev, CyberArk integration costs surprise to downside</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> Hold through Feb 17 earnings. If NGS ARR beats 25%+ and guidance is raised, let it ride toward $224 &mdash; PANW has beat-and-raised 6 straight quarters. Take 1/3 off at $210 to lock gains, let rest run with an 8% trailing stop from post-earnings high. If earnings miss, exit at market open &mdash; don't wait for a bounce.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> NGS ARR growth &lt;25%, FY guidance below $11.5B revenue, or CyberArk integration costs hit margins &gt;200bps</div>
                 </div>
                 <!-- ADI -->
                 <div class="sell-card">
@@ -1783,8 +1787,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">7%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--blue)"></div></div>
-                    <div class="sell-analysis-text">Await Feb 18 BMO earnings. Analog cycle recovery is the thesis &mdash; industrial and auto end markets bottoming. Revenue inflecting positive after inventory correction. Margin expansion story intact with 74%+ gross margins.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Industrial recovery stalls, auto segment misses, inventory channel restocking slower than expected</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> Semiconductor cycle names gap hard on earnings. If Feb 18 BMO report shows sequential revenue growth and industrial recovery confirmation, hold for the full move to $375. ADI is a slow grinder &mdash; no need to trim early. Tighten stop to 7% trailing after earnings if it gaps up. If it gaps down on miss, give it 2 days to find support before exiting &mdash; cycle stocks often V-recover.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> Revenue declines sequentially, auto/industrial book-to-bill below 0.9x, or gross margin drops below 70%</div>
                 </div>
                 <!-- CEG -->
                 <div class="sell-card">
@@ -1799,8 +1803,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">10%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--blue)"></div></div>
-                    <div class="sell-analysis-text">Highest upside in core portfolio at 50% to consensus $407. Nuclear renaissance thesis strengthened by CyrusOne data center deal. Largest US nuclear fleet (32.4 GW) positions them as THE clean energy play for AI power demand. Volatile &mdash; use wider stops.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Regulatory changes on nuclear power, CyrusOne deal complications, NRC license renewal issues, natural gas price collapse reducing nuclear premium</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> Biggest asymmetric upside at 50% to $407. This is a multi-quarter hold if thesis plays out &mdash; AI data center power demand is structural. Take 25% off at $350 to derisk, then let the rest compound toward $400+. CEG is volatile (10% swings normal) so use wider 10% trailing stop and don't panic sell on pullbacks. CyrusOne deal is the catalyst &mdash; each new data center contract announced is a reason to hold tighter.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> NRC regulatory action against nuclear fleet, CyrusOne deal falls through, or natural gas drops below $2/MMBtu (destroys nuclear premium)</div>
                 </div>
                 <!-- LDOS -->
                 <div class="sell-card">
@@ -1815,8 +1819,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">7%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--blue)"></div></div>
-                    <div class="sell-analysis-text">Smallest position (8%) reflects DOGE contract cancellation risk. Defense IT spending resilient but government efficiency push creates uncertainty. Strong backlog provides visibility. Book-to-bill ratio is the key metric.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> DOGE-driven contract cancellations, book-to-bill drops below 1.0x, defense budget sequestration talk</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> Smallest position for a reason &mdash; limited upside (13%) but high probability. This is a quick flip: sell 100% at $215-220 if it pops on earnings. Don't get greedy here, the risk/reward inverts above $215. If earnings miss, cut immediately &mdash; defense IT names don't bounce fast when DOGE headlines are flying. Book-to-bill above 1.0x = hold. Below 1.0x = gone.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> Book-to-bill below 1.0x, any DOGE contract cancellation headline, or defense budget sequestration talk resurfaces</div>
                 </div>
                 <!-- MDT -->
                 <div class="sell-card">
@@ -1831,8 +1835,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">6%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--blue)"></div></div>
-                    <div class="sell-analysis-text">Steady defensive play with 9% upside. Healthcare spending resilient in uncertain macro. GLP-1 drug adoption is a headwind for surgical volumes but Medtronic's diabetes franchise provides offset. Dividend aristocrat for downside protection.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Diabetes segment pressure, GLP-1 headwinds on surgical volumes accelerate, FDA regulatory delays on Hugo surgical robot</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> MDT is your portfolio ballast, not your home run. Sell 100% at $108-110 &mdash; that's the ceiling unless Hugo robot gets FDA approval. The 9% upside is reliable but capped. If it dips below $97 on earnings, buy more (rare opportunity on a dividend aristocrat). Maximum value extraction is selling near $110 and redeploying capital into higher-upside names.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> Hugo robot FDA rejection, surgical volume decline &gt;5% from GLP-1 headwinds, or dividend cut (unlikely but catastrophic)</div>
                 </div>
                 <!-- DASH -->
                 <div class="sell-card">
@@ -1847,9 +1851,9 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">10%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--blue)"></div></div>
-                    <div class="sell-partial">Partial sell: Trim 1/3 position at $220 (38% gain)</div>
-                    <div class="sell-analysis-text">Largest contrarian bet &mdash; stock down 25% creating opportunity. 73% upside to consensus $276. Delivery economics improving with DashPass membership growth. International expansion and grocery/retail expanding TAM.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Take rate compression below 12%, grocery delivery losses widen, DashPass churn increases, international markets burn cash</div>
+                    <div class="sell-partial">Staged exit: 1/3 at $220, 1/3 at $255, final 1/3 at $276</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> This is the highest-conviction contrarian swing in the portfolio. 73% upside means patience = profit. Stage your exit in thirds: sell 1/3 at $220 (38% gain, locks in profit), sell another 1/3 at $255 (60% gain), let final 1/3 ride toward $276 with a 10% trailing stop. DashPass subscriber growth is the north star metric &mdash; as long as that's accelerating, hold aggressively. Post-earnings gaps are your friend on this one.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> Take rate drops below 12%, DashPass subscriber growth decelerates 2 quarters running, or grocery segment losses exceed $200M/quarter</div>
                 </div>
                 <!-- CDNS -->
                 <div class="sell-card">
@@ -1864,8 +1868,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">8%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--blue)"></div></div>
-                    <div class="sell-analysis-text">AI chip design boom drives EDA demand. Cadence is the picks-and-shovels play on chip complexity. 28% upside to $383 consensus. Synopsys competition is real but market growing fast enough for both. Computational software diversifies revenue.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> AI chip design TAM revision downward, Synopsys wins major competitive deals, China export restrictions impact customer base</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> EDA is a secular grower &mdash; every new AI chip needs Cadence tools. This is a hold-and-compound name. Don't sell early unless it rips 20%+ in a week (take half). The 28% upside to $383 is a 6-12 month target, not a quick trade. Best strategy: hold full position, add on any dip below $280, and only start trimming above $370. AI chip complexity is a multi-year tailwind that keeps giving.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> Major AI chip customer (NVDA, AMD) brings EDA in-house, China export restrictions cut &gt;15% of revenue, or Synopsys wins 3+ competitive displacements</div>
                 </div>
             </div>
 
@@ -1884,8 +1888,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">15%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--orange),var(--yellow))"></div><div class="sell-meter-dot" style="left:50%;background:var(--orange)"></div></div>
-                    <div class="sell-analysis-text">EXTREME RISK &mdash; 462% YoY revenue growth from tiny base. Yandex spinoff with governance baggage. Auditor flagged material weakness. Only bet what you can lose entirely. Feb 20 BMO earnings will make or break this one.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Revenue growth decelerates below 200%, auditor red flags escalate, geopolitical risk from Yandex heritage, customer concentration</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> GAMBLE RULES APPLY. Set your exit BEFORE earnings. If Feb 20 BMO report shows revenue growth &gt;300% and new customer wins, ride the momentum &mdash; these hyper-growth names can double fast. Take 50% off at $140 (44% gain) and let house money ride to $160+. If it misses on ANY metric, sell at market open immediately. Zero patience for misses on a 2/5 confidence name. This is a coin flip with asymmetric upside &mdash; manage it like one.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> Revenue growth below 250%, auditor issues escalate, ANY customer concentration risk revealed, or stock drops 15% intraday</div>
                 </div>
                 <!-- PLTR -->
                 <div class="sell-card" style="border-color:rgba(249,115,22,0.2)">
@@ -1900,8 +1904,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">12%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--orange),var(--yellow))"></div><div class="sell-meter-dot" style="left:50%;background:var(--orange)"></div></div>
-                    <div class="sell-analysis-text">Already reported Feb 4 &mdash; use momentum. Forward PE of 110x is nose-bleed but commercial growth (54% YoY) justifies premium for true believers. Government AI modernization is multi-year tailwind. AIP platform gaining enterprise traction.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Government contract delays, commercial growth slows below 30% YoY, CEO stock sales accelerate, valuation compression</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> PLTR already reported &mdash; this is a momentum trade now. At 110x forward PE, you're paying for perfection. Take profits aggressively: sell 50% at $145 (10% gain) and trail the rest with a tight 8% stop. Do NOT hold through any negative catalyst at this valuation &mdash; multiple compression on expensive names is brutal. If government AI spending accelerates (new DoD contracts), add back to full position. Otherwise, be fast in and fast out. Greed kills on 110x PE stocks.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> Commercial growth below 30% YoY, Karp sells &gt;$200M in a quarter, or any government contract cancellation headlines</div>
                 </div>
                 <!-- COIN -->
                 <div class="sell-card" style="border-color:rgba(249,115,22,0.2)">
@@ -1916,9 +1920,9 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">12%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--orange),var(--yellow))"></div><div class="sell-meter-dot" style="left:50%;background:var(--orange)"></div></div>
-                    <div class="sell-partial">Partial sell: Trim 1/3 position at $250 (50% gain)</div>
-                    <div class="sell-analysis-text">Post-earnings contrarian play. Down 61% from $420 ATH despite $11B cash fortress and profitable operations. 116% upside to $359 consensus is massive. Deribit derivatives acquisition and GENIUS Act regulatory tailwinds.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Crypto winter return (BTC below $60K), regulatory reversal, trading volume collapse, Deribit integration fails</div>
+                    <div class="sell-partial">Staged exit: 1/3 at $220, 1/3 at $280, final 1/3 at $350</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> COIN is the highest upside name (116% to $359) but correlated to crypto prices. Watch BTC: above $80K = hold aggressively, below $65K = trim hard. Stage exits: sell 1/3 at $220 (32% gain), 1/3 at $280 (69% gain), let rest ride to $350 with a 12% trailing stop. The GENIUS Act stablecoin legislation is a binary catalyst &mdash; if it passes, add to position. Deribit derivatives integration could 2x revenue. This is a high-conviction hold IF crypto stays bullish.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> BTC drops below $55K, SEC enforcement action, trading volume drops 40%+ from recent levels, or GENIUS Act dies in committee</div>
                 </div>
             </div>
 
@@ -1936,8 +1940,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">6%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--cyan)"></div></div>
-                    <div class="sell-analysis-text">Safest name on the list. 5/5 confidence. Walmart+ membership growth and e-commerce acceleration driving comps. Defensive positioning if macro deteriorates.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Consumer spending collapses, Walmart+ growth stalls, margin pressure from wage increases</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> WMT is the sleep-well position. 5/5 confidence but only 12% upside, so manage expectations. Sell 100% at $148-150 &mdash; there's no reason to hold past the consensus target on a low-growth staple. If it beats and runs to $155+, let it go &mdash; your capital does more work in higher-beta names. WMT's real value is protecting capital during volatility. If macro gets ugly, this is the last thing you sell.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> Same-store sales go negative, Walmart+ subscriber losses, or gross margin compression &gt;50bps</div>
                 </div>
                 <div class="sell-card">
                     <div class="sell-card-head">
@@ -1951,8 +1955,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">8%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--cyan)"></div></div>
-                    <div class="sell-analysis-text">Travel recovery continues. Booking is the global leader with massive network effects. 50% upside to consensus. Premium valuation but justified by profitability and capital return.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Global recession hits travel, Airbnb competitive threat, European regulatory burden, FX headwinds</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> BKNG is a compounder &mdash; 50% upside to $6,196 but it gets there slowly over quarters. Hold and add on 5%+ dips. Travel demand is secular and BKNG's network moat means pricing power. Don't trim until $5,500+ (33% gain), then take 1/3 off and let the rest ride. The $4,137 entry is well below the consensus &mdash; time is your friend here. Consider selling covered calls at $5K strike for income while you wait.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> Global recession officially declared, European travel bookings decline &gt;10% YoY, or Airbnb takes &gt;5% share in BKNG's core markets</div>
                 </div>
                 <div class="sell-card">
                     <div class="sell-card-head">
@@ -1966,8 +1970,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">8%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--cyan)"></div></div>
-                    <div class="sell-analysis-text">Luxury homebuilder benefiting from housing shortage. Mortgage rates stabilizing supports demand. Land bank provides multi-year visibility. Cyclical name &mdash; use stops strictly.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Mortgage rates spike above 8%, housing starts collapse, luxury segment demand softens</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> Cyclical names need strict discipline. Sell 100% at $180-183 &mdash; do not fall in love with a homebuilder. The 10% upside is quick money if earnings deliver, but the downside on a mortgage rate spike is violent. If earnings beat and it runs past $185, sell anyway &mdash; homebuilders trade on macro, not fundamentals, and rates could turn at any time. Fast in, fast out, bank the 10%.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> 30-yr mortgage rate breaks above 7.5%, housing starts drop 15%+, or order cancellation rate spikes above 20%</div>
                 </div>
                 <div class="sell-card">
                     <div class="sell-card-head">
@@ -1981,8 +1985,8 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">10%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--cyan)"></div></div>
-                    <div class="sell-analysis-text">Deep value play at 2/5 confidence. GMS trends need to stabilize. Turnaround story requires patience. Unique marketplace moat but execution risk is real. Small position only.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> GMS decline accelerates, seller churn increases, Amazon Handmade competitive threat</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> ETSY is a deep value lottery ticket. Small position, big expectations. If GMS stabilizes on earnings, this could rip 20-30% on short covering alone &mdash; hold for the move and sell 100% at $63. If GMS continues declining, cut your loss immediately &mdash; there's no floor on a marketplace losing sellers. This isn't a hold-and-hope; it's binary. GMS up = ride to target. GMS down = next-day exit.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> GMS declines for 3rd consecutive quarter, active seller count drops &gt;5%, or management lowers full-year guide</div>
                 </div>
                 <div class="sell-card">
                     <div class="sell-card-head">
@@ -1996,11 +2000,11 @@
                         <div class="sell-price-box"><div class="sell-price-label">Trail Stop</div><div class="sell-price-val">8%</div></div>
                     </div>
                     <div class="sell-meter"><div class="sell-meter-fill" style="width:50%;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green))"></div><div class="sell-meter-dot" style="left:50%;background:var(--cyan)"></div></div>
-                    <div class="sell-analysis-text">World's largest gold miner riding $5,000+ gold with 45% operating margins and record FCF. Gold thesis as inflation hedge and central bank accumulation continues. Feb 19 AMC earnings.</div>
-                    <div class="sell-triggers"><strong>Sell triggers:</strong> Gold price drops below $4,500, mining cost inflation, geopolitical resolution reduces safe-haven demand</div>
+                    <div class="sell-analysis-text"><strong>Profit-maximizing play:</strong> NEM is a gold price proxy. If gold stays above $5K, hold for the full move to $140+. Gold miners have operating leverage &mdash; every $100 in gold price = $2-3 in NEM price. Sell 100% at $138-142. If gold breaks $5,200, raise target to $155 and hold tighter. The real edge: NEM's 45% margins at $5K gold means FCF is ridiculous &mdash; they can buy back stock, raise dividends, or acquire. Time is on your side as long as gold holds.</div>
+                    <div class="sell-triggers"><strong>Exit immediately if:</strong> Gold drops below $4,500, all-in sustaining costs (AISC) rise above $1,400/oz, or management announces dilutive acquisition</div>
                 </div>
             </div>
-            <div class="sell-updated">Last updated: February 15, 2026 &middot; Signals update daily based on price action, earnings results, and macro changes</div>
+            <div class="sell-updated">Last updated: February 17, 2026 &middot; Signals update daily based on price action, earnings results, and macro changes</div>
         </section>
 
         <div class="divider"></div>
@@ -2012,25 +2016,36 @@
                 <div class="sb-hero-sub">How our picks are doing &mdash; and how you stack up</div>
             </div>
 
-            <div class="sb-stats" id="sbStats">
+            <!-- Category returns -->
+            <div class="sb-stats" id="sbStats" style="grid-template-columns: repeat(6, 1fr);">
                 <div class="sb-stat">
-                    <div class="label">Portfolio Return</div>
-                    <div class="value" id="sbPortReturn" style="color:var(--text-dim)">--</div>
-                    <div class="sub">Weighted core picks</div>
+                    <div class="label">All Picks</div>
+                    <div class="value" id="sbAllReturn" style="color:var(--text-dim)">--</div>
+                    <div class="sub">15 stocks avg</div>
                 </div>
                 <div class="sb-stat">
-                    <div class="label">Best Performer</div>
+                    <div class="label">Core Picks</div>
+                    <div class="value" id="sbCoreReturn" style="color:var(--blue)">--</div>
+                    <div class="sub">7 weighted</div>
+                </div>
+                <div class="sb-stat">
+                    <div class="label">Wildcards</div>
+                    <div class="value" id="sbWildReturn" style="color:var(--orange)">--</div>
+                    <div class="sub">3 stocks avg</div>
+                </div>
+                <div class="sb-stat">
+                    <div class="label">Alternates</div>
+                    <div class="value" id="sbAltReturn" style="color:var(--cyan)">--</div>
+                    <div class="sub">5 stocks avg</div>
+                </div>
+                <div class="sb-stat">
+                    <div class="label">Best Pick</div>
                     <div class="value" id="sbBestPick" style="color:var(--green)">--</div>
                     <div class="sub" id="sbBestPct">--</div>
                 </div>
                 <div class="sb-stat">
-                    <div class="label">Worst Performer</div>
-                    <div class="value" id="sbWorstPick" style="color:var(--red)">--</div>
-                    <div class="sub" id="sbWorstPct">--</div>
-                </div>
-                <div class="sb-stat">
                     <div class="label">Win Rate</div>
-                    <div class="value" id="sbWinRate" style="color:var(--cyan)">--</div>
+                    <div class="value" id="sbWinRate" style="color:var(--green)">--</div>
                     <div class="sub">Picks in the green</div>
                 </div>
             </div>
@@ -2039,9 +2054,10 @@
                 <!-- Picks Performance -->
                 <div class="sb-panel">
                     <div class="sb-panel-title"><span class="icon">&#x1F4C8;</span> App Picks Performance</div>
+                    <div style="font-size:0.65rem; color:var(--text-muted); margin-bottom:0.6rem;">Tracking since Feb 17, 2026 open</div>
                     <div class="perf-grid" id="perfGrid">
                         <div class="empty-state">
-                            <p>Performance data loads when prices are updated.<br>Entry prices locked at Feb 15, 2026.</p>
+                            <p>Performance data loads when prices are updated.<br>Comparison starts Feb 17, 2026.</p>
                         </div>
                     </div>
                 </div>
@@ -2053,6 +2069,22 @@
                         <div class="lb-empty">
                             No traders yet. <a href="#" onclick="openLoginModal(); return false;" style="color:var(--blue)">Create an account</a> and log your first trade to get on the board.
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Best / Worst User Trades -->
+            <div class="sb-dual" style="margin-top:1rem;">
+                <div class="sb-panel">
+                    <div class="sb-panel-title"><span class="icon">&#x1F525;</span> Best User Trades</div>
+                    <div id="bestTradesGrid">
+                        <div class="lb-empty">No closed trades yet. Sell a position to see realized gains here.</div>
+                    </div>
+                </div>
+                <div class="sb-panel">
+                    <div class="sb-panel-title"><span class="icon">&#x1F4A9;</span> Worst User Trades</div>
+                    <div id="worstTradesGrid">
+                        <div class="lb-empty">No closed trades yet.</div>
                     </div>
                 </div>
             </div>
@@ -2120,9 +2152,19 @@
                 <div id="registerForm" style="display:none">
                     <div class="modal-title">Join the Board</div>
                     <div class="modal-subtitle">Create an account to log trades and track your performance</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input class="form-input" id="regFirstName" type="text" placeholder="Nick" autocomplete="given-name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input class="form-input" id="regLastName" type="text" placeholder="Butler" autocomplete="family-name">
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label class="form-label">Display Name</label>
-                        <input class="form-input" id="regDisplayName" type="text" placeholder="Nick B" autocomplete="name">
+                        <label class="form-label">Email</label>
+                        <input class="form-input" id="regEmail" type="email" placeholder="nick@example.com" autocomplete="email">
                     </div>
                     <div class="form-group">
                         <label class="form-label">Username</label>
@@ -2143,7 +2185,7 @@
         <div class="modal-overlay" id="tradeModal">
             <div class="modal-box">
                 <button class="modal-close" onclick="closeTradeModal()">&times;</button>
-                <div class="modal-title">Log a Trade</div>
+                <div class="modal-title" id="tradeModalTitle">Log a Trade</div>
                 <div class="modal-subtitle">Record a trade you actually made to track your performance</div>
                 <div class="form-group">
                     <label class="form-label">Ticker</label>
@@ -2200,7 +2242,7 @@
                     <input class="form-input" id="tradeNotes" type="text" placeholder="Earnings play, following the pick...">
                 </div>
                 <div class="form-error" id="tradeError"></div>
-                <button class="btn btn-green" onclick="doSubmitTrade()">Submit Trade</button>
+                <button class="btn btn-green" id="tradeSubmitBtn" onclick="doSubmitTrade()">Submit Trade</button>
             </div>
         </div>
 
@@ -2594,9 +2636,18 @@
         function closeLoginModal() { document.getElementById('loginModal').classList.remove('show'); clearErrors(); }
         function openTradeModal() {
             if (!currentUser) { openLoginModal(); return; }
+            editingTradeId = null;
+            document.getElementById('tradeModalTitle').textContent = 'Log a Trade';
+            document.getElementById('tradeSubmitBtn').textContent = 'Submit Trade';
+            document.getElementById('tradeTicker').value = '';
+            document.getElementById('tradeAction').value = 'BUY';
+            document.getElementById('tradeShares').value = '';
+            document.getElementById('tradePrice').value = '';
+            document.getElementById('tradeDate').value = '2026-02-17';
+            document.getElementById('tradeNotes').value = '';
             document.getElementById('tradeModal').classList.add('show');
         }
-        function closeTradeModal() { document.getElementById('tradeModal').classList.remove('show'); clearErrors(); }
+        function closeTradeModal() { document.getElementById('tradeModal').classList.remove('show'); editingTradeId = null; clearErrors(); }
         function showLogin() { document.getElementById('loginForm').style.display = ''; document.getElementById('registerForm').style.display = 'none'; }
         function showRegister() { document.getElementById('loginForm').style.display = 'none'; document.getElementById('registerForm').style.display = ''; }
         function clearErrors() {
@@ -2619,22 +2670,30 @@
 
         // ─── Auth Actions (localStorage mode) ───
         function doRegister() {
-            const displayName = document.getElementById('regDisplayName').value.trim();
+            const firstName = document.getElementById('regFirstName').value.trim();
+            const lastName = document.getElementById('regLastName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
             const username = document.getElementById('regUsername').value.trim().toLowerCase();
             const password = document.getElementById('regPassword').value;
             const errEl = document.getElementById('regError');
 
-            if (!displayName || !username || !password) { errEl.textContent = 'All fields required'; errEl.classList.add('show'); return; }
+            if (!firstName || !lastName || !email || !username || !password) { errEl.textContent = 'All fields required'; errEl.classList.add('show'); return; }
+            if (!email.includes('@') || !email.includes('.')) { errEl.textContent = 'Enter a valid email'; errEl.classList.add('show'); return; }
             if (username.length < 3) { errEl.textContent = 'Username must be 3+ characters'; errEl.classList.add('show'); return; }
             if (password.length < 6) { errEl.textContent = 'Password must be 6+ characters'; errEl.classList.add('show'); return; }
 
             const users = lsGet('users', []);
             if (users.find(u => u.username === username)) { errEl.textContent = 'Username taken'; errEl.classList.add('show'); return; }
+            if (users.find(u => u.email === email)) { errEl.textContent = 'Email already registered'; errEl.classList.add('show'); return; }
 
             const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#f97316', '#06b6d4', '#ec4899'];
+            const displayName = firstName + ' ' + lastName.charAt(0) + '.';
             const user = {
                 id: Date.now(),
                 username,
+                firstName,
+                lastName,
+                email,
                 displayName,
                 password,
                 avatarColor: colors[Math.floor(Math.random() * colors.length)],
@@ -2647,7 +2706,7 @@
             closeLoginModal();
             updateAuthUI();
             loadScoreboard();
-            showToast('Account created! Welcome, ' + displayName, 'success');
+            showToast('Account created! Welcome, ' + firstName + '!', 'success');
         }
 
         function doLogin() {
@@ -2692,30 +2751,50 @@
             if (!price || price <= 0) { errEl.textContent = 'Enter a valid price'; errEl.classList.add('show'); return; }
             if (!date) { errEl.textContent = 'Select a date'; errEl.classList.add('show'); return; }
 
-            const trades = lsGet('trades_' + currentUser.id, []);
-            trades.push({ id: Date.now(), ticker, action, shares, price, tradeDate: date, notes, createdAt: new Date().toISOString() });
+            let trades = lsGet('trades_' + currentUser.id, []);
+            if (editingTradeId) {
+                trades = trades.map(t => t.id === editingTradeId ? { ...t, ticker, action, shares, price, tradeDate: date, notes } : t);
+                showToast('Trade updated: ' + action + ' ' + shares + ' ' + ticker + ' @ $' + price.toFixed(2), 'success');
+            } else {
+                trades.push({ id: Date.now(), ticker, action, shares, price, tradeDate: date, notes, createdAt: new Date().toISOString() });
+                showToast(action + ' ' + shares + ' ' + ticker + ' @ $' + price.toFixed(2), 'success');
+            }
             lsSet('trades_' + currentUser.id, trades);
 
             closeTradeModal();
             loadMyTrades();
             loadScoreboard();
-            showToast(action + ' ' + shares + ' ' + ticker + ' @ $' + price.toFixed(2), 'success');
-
-            // Reset form
-            document.getElementById('tradeTicker').value = '';
-            document.getElementById('tradeShares').value = '';
-            document.getElementById('tradePrice').value = '';
-            document.getElementById('tradeNotes').value = '';
         }
 
         function deleteTrade(tradeId) {
             if (!currentUser) return;
+            if (!confirm('Delete this trade?')) return;
             let trades = lsGet('trades_' + currentUser.id, []);
             trades = trades.filter(t => t.id !== tradeId);
             lsSet('trades_' + currentUser.id, trades);
             loadMyTrades();
             loadScoreboard();
             showToast('Trade deleted', 'success');
+        }
+
+        let editingTradeId = null;
+
+        function editTrade(tradeId) {
+            if (!currentUser) return;
+            const trades = lsGet('trades_' + currentUser.id, []);
+            const trade = trades.find(t => t.id === tradeId);
+            if (!trade) return;
+
+            editingTradeId = tradeId;
+            document.getElementById('tradeTicker').value = trade.ticker;
+            document.getElementById('tradeAction').value = trade.action;
+            document.getElementById('tradeShares').value = trade.shares;
+            document.getElementById('tradePrice').value = trade.price;
+            document.getElementById('tradeDate').value = trade.tradeDate;
+            document.getElementById('tradeNotes').value = trade.notes || '';
+            document.getElementById('tradeModalTitle').textContent = 'Edit Trade';
+            document.getElementById('tradeSubmitBtn').textContent = 'Save Changes';
+            document.getElementById('tradeModal').classList.add('show');
         }
 
         function loadMyTrades() {
@@ -2732,8 +2811,11 @@
                 <div class="trade-item">
                     <span class="trade-action ${t.action === 'BUY' ? 'trade-buy' : 'trade-sell'}">${t.action}</span>
                     <span class="trade-ticker">${t.ticker}</span>
-                    <span class="trade-details">${t.shares} shares @ $${t.price.toFixed(2)} &middot; ${t.tradeDate}</span>
-                    <button class="trade-delete" onclick="deleteTrade(${t.id})" title="Delete">&times;</button>
+                    <span class="trade-details">${t.shares} shares @ $${t.price.toFixed(2)} &middot; ${t.tradeDate}${t.notes ? ' &middot; ' + t.notes : ''}</span>
+                    <div class="trade-actions">
+                        <button class="trade-btn edit" onclick="editTrade(${t.id})" title="Edit">&#9998;</button>
+                        <button class="trade-btn delete" onclick="deleteTrade(${t.id})" title="Delete">&times;</button>
+                    </div>
                 </div>
             `).join('');
         }
@@ -2758,38 +2840,58 @@
             // Sort by performance
             perf.sort((a, b) => b.changePct - a.changePct);
 
-            // Calculate portfolio weighted return (core only)
+            // Calculate returns by category
             const corePicks = perf.filter(p => p.category === 'core');
-            const portfolioReturn = corePicks.reduce((sum, p) => sum + (p.changePct * (p.allocPct || 0) / 100), 0);
+            const wildPicks = perf.filter(p => p.category === 'wildcard');
+            const altPicks = perf.filter(p => p.category === 'alternate');
 
-            // Update stats
+            const coreReturn = corePicks.reduce((sum, p) => sum + (p.changePct * (p.allocPct || 0) / 100), 0);
+            const wildReturn = wildPicks.length ? wildPicks.reduce((s, p) => s + p.changePct, 0) / wildPicks.length : 0;
+            const altReturn = altPicks.length ? altPicks.reduce((s, p) => s + p.changePct, 0) / altPicks.length : 0;
+            const allReturn = perf.length ? perf.reduce((s, p) => s + p.changePct, 0) / perf.length : 0;
+
+            // Update category stats
             const best = perf[0];
-            const worst = perf[perf.length - 1];
             const winners = perf.filter(p => p.changePct > 0).length;
 
-            document.getElementById('sbPortReturn').textContent = portfolioReturn.toFixed(1) + '%';
-            document.getElementById('sbPortReturn').style.color = portfolioReturn >= 0 ? 'var(--green)' : 'var(--red)';
+            function setReturn(id, val) {
+                const el = document.getElementById(id);
+                el.textContent = (val >= 0 ? '+' : '') + val.toFixed(1) + '%';
+                el.style.color = val >= 0 ? 'var(--green)' : 'var(--red)';
+            }
+            setReturn('sbAllReturn', allReturn);
+            setReturn('sbCoreReturn', coreReturn);
+            setReturn('sbWildReturn', wildReturn);
+            setReturn('sbAltReturn', altReturn);
+
             document.getElementById('sbBestPick').textContent = best.ticker;
             document.getElementById('sbBestPct').textContent = (best.changePct >= 0 ? '+' : '') + best.changePct.toFixed(1) + '%';
-            document.getElementById('sbWorstPick').textContent = worst.ticker;
-            document.getElementById('sbWorstPct').textContent = (worst.changePct >= 0 ? '+' : '') + worst.changePct.toFixed(1) + '%';
             document.getElementById('sbWinRate').textContent = Math.round(winners / perf.length * 100) + '%';
 
-            // Render performance bars
+            // Render performance bars with category headers
             const maxAbs = Math.max(...perf.map(p => Math.abs(p.changePct)), 1);
-            perfGrid.innerHTML = perf.map(p => {
-                const barWidth = Math.min(Math.abs(p.changePct) / maxAbs * 100, 100);
-                const isPos = p.changePct >= 0;
-                const catColor = p.category === 'core' ? '' : p.category === 'wildcard' ? 'color:var(--orange)' : 'color:var(--cyan)';
-                return `
-                    <div class="perf-row">
-                        <div class="perf-ticker" style="${catColor}">${p.ticker}</div>
-                        <div class="perf-bar-wrap">
-                            <div class="perf-bar ${isPos ? 'positive' : 'negative'}" style="width:${Math.max(barWidth, 2)}%"></div>
-                        </div>
+
+            function renderCategory(picks, label, color) {
+                if (!picks.length) return '';
+                const sorted = [...picks].sort((a, b) => b.changePct - a.changePct);
+                const catAvg = sorted.reduce((s, p) => s + p.changePct, 0) / sorted.length;
+                return `<div style="font-size:0.65rem;font-weight:700;color:${color};letter-spacing:0.1em;text-transform:uppercase;margin:0.8rem 0 0.3rem;display:flex;justify-content:space-between;">
+                    <span>${label}</span><span style="color:${catAvg >= 0 ? 'var(--green)' : 'var(--red)'}">${catAvg >= 0 ? '+' : ''}${catAvg.toFixed(1)}% avg</span>
+                </div>` + sorted.map(p => {
+                    const barWidth = Math.min(Math.abs(p.changePct) / maxAbs * 100, 100);
+                    const isPos = p.changePct >= 0;
+                    return `<div class="perf-row">
+                        <div class="perf-ticker" style="color:${color}">${p.ticker}</div>
+                        <div class="perf-bar-wrap"><div class="perf-bar ${isPos ? 'positive' : 'negative'}" style="width:${Math.max(barWidth, 2)}%"></div></div>
                         <div class="perf-pct" style="color:${isPos ? 'var(--green)' : 'var(--red)'}">${isPos ? '+' : ''}${p.changePct.toFixed(1)}%</div>
                     </div>`;
-            }).join('');
+                }).join('');
+            }
+
+            perfGrid.innerHTML =
+                renderCategory(corePicks, 'Core Picks', 'var(--blue)') +
+                renderCategory(wildPicks, 'Wildcards', 'var(--orange)') +
+                renderCategory(altPicks, 'Alternates', 'var(--cyan)');
         }
 
         function loadLeaderboard() {
@@ -2798,6 +2900,7 @@
 
             if (users.length === 0) {
                 lbTable.innerHTML = '<div class="lb-empty">No traders yet. <a href="#" onclick="openLoginModal(); return false;" style="color:var(--blue)">Create an account</a> and log your first trade to get on the board.</div>';
+                loadBestWorstTrades(users);
                 return;
             }
 
@@ -2869,6 +2972,105 @@
                         <div class="lb-pnl" style="color:${pnlColor}">${pnlSign}${u.pnlPct.toFixed(1)}%</div>
                     </div>`;
             }).join('');
+
+            loadBestWorstTrades(users);
+        }
+
+        // ─── Best / Worst User Trades ───
+        function loadBestWorstTrades(users) {
+            const prices = lsGet('prices', {});
+            const allTrades = [];
+
+            for (const user of users) {
+                const trades = lsGet('trades_' + user.id, []);
+                // Build buy cost basis per ticker
+                const buys = {};
+                for (const t of trades) {
+                    if (t.action === 'BUY') {
+                        if (!buys[t.ticker]) buys[t.ticker] = [];
+                        buys[t.ticker].push({ price: t.price, shares: t.shares, date: t.tradeDate });
+                    }
+                }
+
+                // For sells, calculate realized P&L using FIFO
+                for (const t of trades) {
+                    if (t.action === 'SELL' && buys[t.ticker] && buys[t.ticker].length) {
+                        const buy = buys[t.ticker][0];
+                        const pnlPct = ((t.price - buy.price) / buy.price * 100);
+                        const pnlAmt = (t.price - buy.price) * t.shares;
+                        allTrades.push({
+                            user: user.displayName,
+                            avatarColor: user.avatarColor,
+                            ticker: t.ticker,
+                            buyPrice: buy.price,
+                            sellPrice: t.price,
+                            shares: t.shares,
+                            pnlPct,
+                            pnlAmt,
+                            date: t.tradeDate,
+                        });
+                    }
+                }
+
+                // Also show open positions (unrealized) using current prices
+                for (const [ticker, buyList] of Object.entries(buys)) {
+                    const totalBought = buyList.reduce((s, b) => s + b.shares, 0);
+                    const totalSold = trades.filter(t => t.action === 'SELL' && t.ticker === ticker).reduce((s, t) => s + t.shares, 0);
+                    const remaining = totalBought - totalSold;
+                    if (remaining > 0) {
+                        const avgCost = buyList.reduce((s, b) => s + b.price * b.shares, 0) / totalBought;
+                        const pick = PICKS.find(p => p.ticker === ticker);
+                        const currentPrice = prices[ticker] || (pick ? pick.entry : avgCost);
+                        const pnlPct = ((currentPrice - avgCost) / avgCost * 100);
+                        const pnlAmt = (currentPrice - avgCost) * remaining;
+                        allTrades.push({
+                            user: user.displayName,
+                            avatarColor: user.avatarColor,
+                            ticker,
+                            buyPrice: avgCost,
+                            sellPrice: currentPrice,
+                            shares: remaining,
+                            pnlPct,
+                            pnlAmt,
+                            date: 'open',
+                            isOpen: true,
+                        });
+                    }
+                }
+            }
+
+            function renderTradeRow(t) {
+                const isPos = t.pnlPct >= 0;
+                const sign = isPos ? '+' : '';
+                const color = isPos ? 'var(--green)' : 'var(--red)';
+                const tag = t.isOpen ? '<span style="font-size:0.6rem;color:var(--text-muted);background:var(--surface-3);padding:0.1rem 0.35rem;border-radius:3px;margin-left:0.3rem;">OPEN</span>' : '';
+                return `<div class="lb-row">
+                    <div class="lb-user">
+                        <div class="lb-avatar" style="background:${t.avatarColor};width:24px;height:24px;font-size:0.6rem;">${(t.user || '?')[0].toUpperCase()}</div>
+                        <div>
+                            <div class="lb-name" style="font-size:0.8rem;">${t.user} &middot; <strong>${t.ticker}</strong>${tag}</div>
+                            <div class="lb-trades">${t.shares} shares &middot; $${t.buyPrice.toFixed(2)} &rarr; $${t.sellPrice.toFixed(2)} &middot; ${sign}$${Math.abs(t.pnlAmt).toFixed(2)}</div>
+                        </div>
+                    </div>
+                    <div class="lb-pnl" style="color:${color};font-size:0.85rem;">${sign}${t.pnlPct.toFixed(1)}%</div>
+                </div>`;
+            }
+
+            const bestEl = document.getElementById('bestTradesGrid');
+            const worstEl = document.getElementById('worstTradesGrid');
+
+            if (allTrades.length === 0) {
+                bestEl.innerHTML = '<div class="lb-empty">No trades yet. Log trades and watch the leaderboard come alive.</div>';
+                worstEl.innerHTML = '<div class="lb-empty">No trades yet.</div>';
+                return;
+            }
+
+            const sorted = [...allTrades].sort((a, b) => b.pnlPct - a.pnlPct);
+            const best5 = sorted.slice(0, 5);
+            const worst5 = sorted.slice(-5).reverse();
+
+            bestEl.innerHTML = best5.map(renderTradeRow).join('');
+            worstEl.innerHTML = worst5.map(renderTradeRow).join('');
         }
 
         // ─── Toast Notifications ───
