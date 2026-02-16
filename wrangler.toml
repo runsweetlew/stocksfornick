@@ -1,0 +1,11 @@
+name = "stocksfornick"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "stocksfornick-db"
+database_id = "placeholder-update-after-creation"

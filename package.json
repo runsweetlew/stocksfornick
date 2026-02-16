@@ -1,0 +1,17 @@
+{
+  "name": "stocksfornick",
+  "version": "1.0.0",
+  "description": "StocksForNick - Weekly Earnings Intelligence with Performance Tracking",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute stocksfornick-db --local --file=./schema.sql",
+    "db:init:remote": "wrangler d1 execute stocksfornick-db --remote --file=./schema.sql",
+    "seed": "wrangler d1 execute stocksfornick-db --local --file=./seed.sql",
+    "seed:remote": "wrangler d1 execute stocksfornick-db --remote --file=./seed.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^3.100.0"
+  }
+}
